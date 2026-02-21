@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
 entity counter_2bit is
   Port (
@@ -12,7 +11,7 @@ entity counter_2bit is
 end counter_2bit;
 
 architecture Behavioral of counter_2bit is
-  signal count_reg : STD_LOGIC_VECTOR (1 downto 0) := "00";
+  signal count_reg : unsigned(1 downto 0) := "00";
 begin
   process(clk, rst)
   begin
@@ -23,5 +22,5 @@ begin
     end if;
   end process;
   
-  count <= count_reg;
+  count <= std_logic_vector(count_reg);
 end Behavioral;
