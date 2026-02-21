@@ -1,30 +1,27 @@
---- 
-project:
-  source_files:
-    - counter_2bit.vhd
-    - tt_um_opencores_counter.v
-  top_module:  "tt_um_opencores_counter"
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
-documentation:
-  author:       "David Alejandro Trejo Pizzo"
-  title:        "2-bit Counter (VHDL)"
-  language:     "VHDL/Verilog"
-  description:  "A simple 2-bit counter generated and wrapped for ASIC execution."
+entity counter_2bit is
+  Port (
+    clk : in STD_LOGIC;
+    rst : in STD_LOGIC;
+    count : out STD_LOGIC_VECTOR (1 downto 0)
+  );
+end counter_2bit;
 
-  pinout:
-    ui[0]: "unused"
-    ui[1]: "unused"
-    ui[2]: "unused"
-    ui[3]: "unused"
-    ui[4]: "unused"
-    ui[5]: "unused"
-    ui[6]: "unused"
-    ui[7]: "unused"
-    uo[0]: "count[0]"
-    uo[1]: "count[1]"
-    uo[2]: "unused"
-    uo[3]: "unused"
-    uo[4]: "unused"
-    uo[5]: "unused"
-    uo[6]: "unused"
-    uo[7]: "unused"
+architecture Behavioral of counter_2bit is
+  signal count_reg : STD_LOGIC_VECTOR (1 downto 0) := "00";
+begin
+  process(clk, rst)
+  begin
+    if rst = '1' then
+      count_reg <= "00";
+    elsif rising_edge(clk) then
+      count_reg <= count_reg + 1;
+    end if;
+  end process;
+  
+  count <= count_reg;
+end Behavioral;
