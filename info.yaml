@@ -13,7 +13,6 @@ project:
   top_module:  "tt_um_counter_2bit"
 
   source_files:
-    - "counter_2bit.vhd"
     - "tt_um_counter_2bit.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
